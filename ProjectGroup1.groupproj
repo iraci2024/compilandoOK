@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C298DD31-FB19-47DA-A36B-39F0F87530C0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Operador.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Jar2\Library\pak.pak.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Jar2\Library\exetest.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Operador">
+        <MSBuild Projects="Operador.dproj"/>
+    </Target>
+    <Target Name="Operador:Clean">
+        <MSBuild Projects="Operador.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Operador:Make">
+        <MSBuild Projects="Operador.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pak_pak">
+        <MSBuild Projects="..\Jar2\Library\pak.pak.dproj"/>
+    </Target>
+    <Target Name="pak_pak:Clean">
+        <MSBuild Projects="..\Jar2\Library\pak.pak.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pak_pak:Make">
+        <MSBuild Projects="..\Jar2\Library\pak.pak.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="exetest">
+        <MSBuild Projects="..\Jar2\Library\exetest.dproj"/>
+    </Target>
+    <Target Name="exetest:Clean">
+        <MSBuild Projects="..\Jar2\Library\exetest.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="exetest:Make">
+        <MSBuild Projects="..\Jar2\Library\exetest.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Operador;pak_pak;exetest"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Operador:Clean;pak_pak:Clean;exetest:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Operador:Make;pak_pak:Make;exetest:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
